@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: streamx-api
+    env: node
+    buildCommand: "npm install -g pnpm && pnpm install && cd apps/api && pnpm run build"
+    startCommand: "cd apps/api && pnpm run start"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: GROQ_API_KEY
+        sync: false
+      - key: YOUTUBE_API_KEY
+        sync: false

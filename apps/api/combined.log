@@ -1,0 +1,110 @@
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"127.0.0.1:27017":{"$clusterTime":null,"address":"127.0.0.1:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":20624061,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"MongoDB connection error: connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"127.0.0.1:27017":{"$clusterTime":null,"address":"127.0.0.1:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":20624061,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (D:\\New folder (3)\\StreamX\\node_modules\\.pnpm\\mongoose@8.23.0\\node_modules\\mongoose\\lib\\connection.js:1169:11)\n    at NativeConnection.openUri (D:\\New folder (3)\\StreamX\\node_modules\\.pnpm\\mongoose@8.23.0\\node_modules\\mongoose\\lib\\connection.js:1100:11)\n    at connectDB (D:\\New folder (3)\\StreamX\\apps\\api\\src\\server.ts:92:5)"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"127.0.0.1:27017":{"$clusterTime":null,"address":"127.0.0.1:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":20659029,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"MongoDB connection error: connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"127.0.0.1:27017":{"$clusterTime":null,"address":"127.0.0.1:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":20659029,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (D:\\New folder (3)\\StreamX\\node_modules\\.pnpm\\mongoose@8.23.0\\node_modules\\mongoose\\lib\\connection.js:1169:11)\n    at NativeConnection.openUri (D:\\New folder (3)\\StreamX\\node_modules\\.pnpm\\mongoose@8.23.0\\node_modules\\mongoose\\lib\\connection.js:1100:11)\n    at Timeout.connectDB [as _onTimeout] (D:\\New folder (3)\\StreamX\\apps\\api\\src\\server.ts:92:5)"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"127.0.0.1:27017":{"$clusterTime":null,"address":"127.0.0.1:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":20694476,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"MongoDB connection error: connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"127.0.0.1:27017":{"$clusterTime":null,"address":"127.0.0.1:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":20694476,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (D:\\New folder (3)\\StreamX\\node_modules\\.pnpm\\mongoose@8.23.0\\node_modules\\mongoose\\lib\\connection.js:1169:11)\n    at NativeConnection.openUri (D:\\New folder (3)\\StreamX\\node_modules\\.pnpm\\mongoose@8.23.0\\node_modules\\mongoose\\lib\\connection.js:1100:11)\n    at Timeout.connectDB [as _onTimeout] (D:\\New folder (3)\\StreamX\\apps\\api\\src\\server.ts:92:5)"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"127.0.0.1:27017":{"$clusterTime":null,"address":"127.0.0.1:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":20729138,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"MongoDB connection error: connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"127.0.0.1:27017":{"$clusterTime":null,"address":"127.0.0.1:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":20729138,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (D:\\New folder (3)\\StreamX\\node_modules\\.pnpm\\mongoose@8.23.0\\node_modules\\mongoose\\lib\\connection.js:1169:11)\n    at NativeConnection.openUri (D:\\New folder (3)\\StreamX\\node_modules\\.pnpm\\mongoose@8.23.0\\node_modules\\mongoose\\lib\\connection.js:1100:11)\n    at Timeout.connectDB [as _onTimeout] (D:\\New folder (3)\\StreamX\\apps\\api\\src\\server.ts:92:5)"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"127.0.0.1:27017":{"$clusterTime":null,"address":"127.0.0.1:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":20764083,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"MongoDB connection error: connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"127.0.0.1:27017":{"$clusterTime":null,"address":"127.0.0.1:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":20764083,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (D:\\New folder (3)\\StreamX\\node_modules\\.pnpm\\mongoose@8.23.0\\node_modules\\mongoose\\lib\\connection.js:1169:11)\n    at NativeConnection.openUri (D:\\New folder (3)\\StreamX\\node_modules\\.pnpm\\mongoose@8.23.0\\node_modules\\mongoose\\lib\\connection.js:1100:11)\n    at Timeout.connectDB [as _onTimeout] (D:\\New folder (3)\\StreamX\\apps\\api\\src\\server.ts:92:5)"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
+{"level":"info","message":"StreamX API running on port 3001"}
+{"level":"info","message":"MongoDB connected successfully"}
