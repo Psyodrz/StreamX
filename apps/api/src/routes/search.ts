@@ -2,7 +2,8 @@ import express from 'express';
 import { search, suggest, trending } from '../controllers/search';
 import rateLimit from 'express-rate-limit';
 
-const router = express.Router();
+import { Router } from 'express';
+const router: Router = express.Router();
 
 const searchLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute

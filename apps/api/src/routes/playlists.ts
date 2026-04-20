@@ -11,7 +11,8 @@ import {
 } from '../controllers/playlists';
 import { authenticate } from '../middleware/auth';
 
-const router = express.Router();
+import { Router } from 'express';
+const router: Router = express.Router();
 
 router.get('/', authenticate, getUserPlaylists);
 router.post('/', authenticate, createPlaylist);

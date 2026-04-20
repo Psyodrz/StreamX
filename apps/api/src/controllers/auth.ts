@@ -35,8 +35,8 @@ export const register = async (req: Request, res: Response) => {
     const user = new User({ email, passwordHash: password, displayName });
     await user.save();
 
-    const accessToken = signAccessToken(user._id as string);
-    const refreshToken = signRefreshToken(user._id as string);
+    const accessToken = signAccessToken(user.id);
+    const refreshToken = signRefreshToken(user.id);
 
     // Save refresh token hash
     const salt = await bcrypt.genSalt(10);
@@ -85,8 +85,8 @@ export const login = async (req: Request, res: Response) => {
     user.loginAttempts = 0;
     user.lockedUntil = undefined;
 
-    const accessToken = signAccessToken(user._id as string);
-    const refreshToken = signRefreshToken(user._id as string);
+    const accessToken = signAccessToken(user.id);
+    const refreshToken = signRefreshToken(user.id);
 
     // Hash refresh token
     const salt = await bcrypt.genSalt(10);
@@ -126,8 +126,8 @@ export const refresh = async (req: Request, res: Response) => {
       return res.status(401).json({ success: false, error: { code: 'TOKEN_THEFT_DETECTED', message: 'Refresh token reuse detected. Please login again.' } });
     }
 
-    const newAccessToken = signAccessToken(user._id as string);
-    const newRefreshToken = signRefreshToken(user._id as string);
+    const newAccessToken = signAccessToken(user.id);
+    const newRefreshToken = signRefreshToken(user.id);
 
     // Rotate refresh token
     const salt = await bcrypt.genSalt(10);
