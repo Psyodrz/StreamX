@@ -3,9 +3,11 @@ services:
     name: streamx-api
     env: node
     plan: free
-    buildCommand: "npm install -g pnpm && pnpm install && cd apps/api && pnpm run build"
+    buildCommand: "pnpm install && cd apps/api && pnpm run build"
     startCommand: "cd apps/api && pnpm run start"
     envVars:
+      - key: NODE_VERSION
+        value: 20.12.2
       - key: NODE_ENV
         value: production
       - key: PORT
