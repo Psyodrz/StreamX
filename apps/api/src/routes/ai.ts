@@ -108,8 +108,8 @@ router.post('/playlists/personalized', aiLimiter, async (req: Request, res: Resp
   }
 });
 
-router.get('/playlists/:id', (req: Request, res: Response) => {
-  const playlist = getCachedAIPlaylist(req.params.id);
+router.get('/playlists/:id', async (req: Request, res: Response) => {
+  const playlist = await getCachedAIPlaylist(req.params.id);
   if (!playlist) {
     return res.status(404).json({ success: false, error: { message: 'AI Playlist expired or not found' } });
   }

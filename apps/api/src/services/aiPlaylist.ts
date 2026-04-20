@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
 import Groq from 'groq-sdk';
 import ytSearch from 'yt-search';
 import NodeCache from 'node-cache';
 import { ClassifiedSong, SourceType } from './search';
+import SystemCache from '../models/SystemCache';
+
 const playlistCache = new NodeCache({ stdTTL: 30 * 60, checkperiod: 120 });
 
 const SOURCE_TYPE_LABELS: Record<SourceType, string> = {
@@ -92,23 +92,21 @@ export async function batchHydrateSongs(suggestions: AISuggestion[], concurrency
  */
 export async function generateDiscoveryPlaylists(): Promise<AIPlaylist[]> {
   const cacheKey = 'discovery-playlists';
-  const dataPath = path.join(process.cwd(), 'data', 'ai-playlists.json');
 
-  if (fs.existsSync(dataPath)) {
-    try {
-      const fileContent = fs.readFileSync(dataPath, 'utf-8');
-      const parsed = JSON.parse(fileContent);
-      if (parsed && Array.isArray(parsed) && parsed.length > 0) {
-        playlistCache.set(cacheKey, parsed);
-        return parsed;
-      }
-    } catch (err) {
-      console.error('Failed to read persisted playlists, regenerating...');
+  // Check in-memory cache first
+  const cachedMemory = playlistCache.get<AIPlaylist[]>(cacheKey);
+  if (cachedMemory) return cachedMemory;
+
+  // Check MongoDB cache
+  try {
+    const cachedDB = await SystemCache.findOne({ key: cacheKey });
+    if (cachedDB && cachedDB.data && Array.isArray(cachedDB.data) && cachedDB.data.length > 0) {
+      playlistCache.set(cacheKey, cachedDB.data);
+      return cachedDB.data;
     }
+  } catch (err) {
+    console.error('[AIPlaylist] MongoDB cache read failed:', err);
   }
-
-  const cached = playlistCache.get<AIPlaylist[]>(cacheKey);
-  if (cached) return cached;
 
   const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) {
@@ -174,30 +172,38 @@ Provide exactly 20 songs. Output ONLY raw valid JSON, no markdown, no explanatio
       const rawSongs: AISuggestion[] = pl.songs;
       if (rawSongs.length === 0) continue;
 
-      console.log(`[AIPlaylist] Hydrating all ${rawSongs.length} songs for "${pl.name}"...`);
+      console.log(`[AIPlaylist] Hydrating cover track for "${pl.name}"...`);
       
-      // Fully hydrate ALL songs so the playlist is 100% playable from disk
-      const hydratedTracks = await batchHydrateSongs(rawSongs, 3);
+      // OPTIMIZED: Fully hydrate ONLY the first song for the cover image
+      // Other songs are left as unhydrated to prevent 5-minute boot times
+      const coverSong = await hydrateSong(rawSongs[0]);
+      
+      const tracks: AIPlaylistTrack[] = [
+        ...(coverSong ? [coverSong] : []),
+        ...rawSongs.slice(coverSong ? 1 : 0).map(s => ({ ...s, unhydrated: true as const }))
+      ];
 
-      if (hydratedTracks.length > 0) {
+      if (tracks.length > 0) {
          playlists.push({
           id: pl.id || pl.name.toLowerCase().replace(/\s+/g, '-'),
           name: pl.name,
           description: pl.description || '',
-          coverQuery: hydratedTracks[0]?.albumArt || '',
-          songs: hydratedTracks,
+          coverQuery: coverSong?.albumArt || '',
+          songs: tracks,
           type: pl.type || 'mood',
         });
-        console.log(`[AIPlaylist] ✅ "${pl.name}" ready with ${hydratedTracks.length} tracks`);
+        console.log(`[AIPlaylist] ✅ "${pl.name}" ready with ${tracks.length} tracks (1 hydrated)`);
       }
     }
 
     if (playlists.length > 0) {
       playlistCache.set(cacheKey, playlists);
-      if (!fs.existsSync(path.dirname(dataPath))) {
-        fs.mkdirSync(path.dirname(dataPath), { recursive: true });
-      }
-      fs.writeFileSync(dataPath, JSON.stringify(playlists, null, 2), 'utf-8');
+      // Persist to MongoDB instead of local ephemeral file
+      await SystemCache.findOneAndUpdate(
+        { key: cacheKey },
+        { data: playlists },
+        { upsert: true, new: true }
+      );
     }
 
     return playlists;
@@ -303,11 +309,7 @@ RESPOND WITH ONLY valid JSON, no markdown.
  * Fetch a cached playlist by ID. 
  * Because the home page generated them, they should be in the cache.
  */
-export function getCachedAIPlaylist(id: string): AIPlaylist | null {
-  // We check both discovery and all personalized caches
-  // Since personalized caches use a hash, it's slightly trickier to fetch by ID directly.
-  // Instead, we can just search through all keys in the cache.
-  
+export async function getCachedAIPlaylist(id: string): Promise<AIPlaylist | null> {
   const keys = playlistCache.keys();
   for (const key of keys) {
     const lists = playlistCache.get<AIPlaylist[]>(key);
@@ -317,15 +319,19 @@ export function getCachedAIPlaylist(id: string): AIPlaylist | null {
     }
   }
   
-  // Check file system if cache missed
-  const dataPath = path.join(process.cwd(), 'data', 'ai-playlists.json');
-  if (fs.existsSync(dataPath)) {
-    try {
-      const lists: AIPlaylist[] = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-      playlistCache.set('discovery-playlists', lists);
-      const found = lists.find(p => p.id === id);
-      if (found) return found;
-    } catch { }
+  // Check MongoDB if cache missed
+  try {
+    const cachedDB = await SystemCache.findOne({ key: 'discovery-playlists' });
+    if (cachedDB && cachedDB.data && Array.isArray(cachedDB.data)) {
+      const found = cachedDB.data.find((p: any) => p.id === id);
+      if (found) {
+        // Hydrate this playlist into memory for next time
+        playlistCache.set('discovery-playlists', cachedDB.data);
+        return found;
+      }
+    }
+  } catch (err) {
+    console.error('[AIPlaylist] MongoDB fallback check failed:', err);
   }
 
   return null;
@@ -336,12 +342,17 @@ export function getCachedAIPlaylist(id: string): AIPlaylist | null {
  * Injects 5 fresh real-world trending tracks and drops the 5 oldest.
  */
 export async function autoUpdateTrendingPlaylists() {
-  const dataPath = path.join(process.cwd(), 'data', 'ai-playlists.json');
-  if (!fs.existsSync(dataPath)) return;
+  const cacheKey = 'discovery-playlists';
 
   try {
-    const fileContent = fs.readFileSync(dataPath, 'utf-8');
-    const playlists: AIPlaylist[] = JSON.parse(fileContent);
+    let playlists: AIPlaylist[] = [];
+    const cachedDB = await SystemCache.findOne({ key: cacheKey });
+    
+    if (cachedDB && cachedDB.data) {
+      playlists = cachedDB.data;
+    }
+
+    if (playlists.length === 0) return;
 
     const trendingIndex = playlists.findIndex(pl => pl.type === 'trending' || pl.name.toLowerCase().includes('trending'));
     if (trendingIndex === -1) return;
@@ -380,8 +391,11 @@ export async function autoUpdateTrendingPlaylists() {
     }
 
     playlists[trendingIndex] = trendingPl;
-    fs.writeFileSync(dataPath, JSON.stringify(playlists, null, 2), 'utf-8');
-    playlistCache.set('discovery-playlists', playlists);
+    
+    // Update MongoDB
+    await SystemCache.findOneAndUpdate({ key: cacheKey }, { data: playlists }, { upsert: true });
+    playlistCache.set(cacheKey, playlists);
+    
     console.log('[AIPlaylist] Automatically rotated 5 songs in the Trending playlist.');
   } catch (err: any) {
      console.error('[AIPlaylist] Auto-update failed:', err.message);
